@@ -1,0 +1,3 @@
+.venv/
+dataset.npz
+__pycache__/
