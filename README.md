@@ -24,17 +24,26 @@ Overall test accuracy (Keras, 14,400 test frames): 71.2%
 
 | SNR | Accuracy |
 |---|---|
-| -10 dB | FILL |
-| 0 dB | FILL |
-| 10 dB | FILL |
-| 20 dB | FILL |
+| -10 dB | 32.9% |
+| 0 dB | 74.0% |
+| 10 dB | 82.4% |
+| 20 dB | 82.2% |
 
-Per-class accuracy at 10 dB and above: AM FILL, FM FILL, BPSK FILL, QPSK FILL, 8PSK FILL, 16QAM FILL.
+Per-class accuracy at 10 dB and above:
+
+| Class | Accuracy |
+|---|---|
+| AM | 100.0% |
+| FM | 100.0% |
+| BPSK | 99.8% |
+| QPSK | 94.0% |
+| 8PSK | 7.2% |
+| 16QAM | 94.7% |
 
 ![Accuracy vs SNR](results/acc_vs_snr.png)
 ![Confusion matrix, SNR 10 dB and above](results/confusion_highsnr.png)
 
-The main weakness is 8PSK, which the model mostly confuses with QPSK. Frames hold only 16 symbols, and every frame has a random phase and frequency offset.
+Accuracy plateaus near 82% because 8PSK is almost always classified as QPSK, while the other five classes are at 94% or better. Frames hold only 16 symbols, and every frame has a random phase and frequency offset, which makes 8 phase positions hard to separate from 4 with this small model.
 
 ## Quantisation and speed on the Pi 5
 
